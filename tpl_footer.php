@@ -6,7 +6,9 @@
  */
 
 // must be run from within DokuWiki
-if (!defined('DOKU_INC')) die();
+if (!defined('DOKU_INC')) {
+    die();
+}
 ?>
 
 <footer id="dokuwiki__footer" class="clearfix" style="padding-bottom: 0rem !important;">
