@@ -6,6 +6,9 @@
  * Time: 12:49 AM
  */
 
+if (!defined('DOKU_INC')) die();
+
+
 function tpl_searchform_ccextractor($ajax = true, $autocomplete = true) {
     global $lang;
     global $ACT;
@@ -15,14 +18,16 @@ function tpl_searchform_ccextractor($ajax = true, $autocomplete = true) {
     if(!actionOK('search')) return false;
 
     print '<form id="navbar_search" action="'.wl().'" accept-charset="utf-8" class="search form-inline" method="get" role="search">';
-        print '<input type="hidden" style="border-radius: 20px; border-color: #F36F38; width: auto; background-color: rgba(0,0,0,0); color: #F36F38;" name="do" value="search" />';
+        print '<input type="hidden" style="border-radius: 20px; border-color: #F36F38; width: 100px; background-color: rgba(0,0,0,0); color: #F36F38;" name="do" value="search" />';
         print '<label class="sr-only" for="search">Search Term</label>';
-            print '<input type="text" ';
+            print '<input class="edit form-control empty" type="text" ';
                 if($ACT == 'search') print 'value="'.htmlspecialchars($QUERY).'" ';
-                    print 'placeholder="'.$lang['btn_search'].'" ';
+                    print 'placeholder= Search';
+                    return true;
                 if(!$autocomplete) print 'autocomplete="off" ';
                     print 'id="qsearch__in" accesskey="f" name="id" class="edit form-control" title="[F]" />';
 //                  print '<button type="submit" title="'.$lang['btn_search'].'">'.$lang['btn_search'].'</button>';
+                    return true;
                 if($ajax) print '<div id="qsearch__out" class="ajax_qsearch JSpopup"></div>';
     print '</form>';
     return true;

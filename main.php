@@ -21,7 +21,7 @@
 	
     <meta charset="UTF-8" />
 	
-    <title><?php tpl_pagetitle()?></title>
+    <title><?php tpl_pagetitle() ?> :: <?php echo strip_tags($conf['title']) ?></title>
     <script>(function (H) {
             H.className = H.className.replace(/\bno-js\b/, 'js')
         })(document.documentElement)</script>
@@ -37,21 +37,18 @@
     <link href="css/hover-min.css" rel="stylesheet">
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 
-    <link href="<?php echo tpl_getMediaFile(array("conf/userstyle.css")); ?>" rel="stylesheet">
+    <link href="<?php echo tpl_getMediaFile(array("css/userstyle.css")); ?>" rel="stylesheet">
 	
 </head>
 
-<body role="document">
+<body>
     
     <?php
         require_once('conf/tpl_template_ccextractor.php');
-        include('tpl_header.php')
+        include('tpl_header.php');
     ?>
     
     <div class="dokuwiki">
-        <?php if ($conf['tagline']): ?>
-            <p><?php echo $conf['tagline']; ?></p>
-        <?php endif ?>
         
         <?php html_msgarea() ?>
         
@@ -59,22 +56,20 @@
             
             <?php 
             if ($ACT == 'show' and $showSidebar and page_findnearest($conf['sidebar'])) {
-                echo '<div role="main" class="col-md-9"/>';
+                echo '<div role="main" class="col-md-9" style="width: 100%;"/>';
             }
             else {
-                echo '<div role="main" class="col-md-12"/>';
+                echo '<div role="main" class="col-md-12" style="width: 100%;"/>';
             }
             ?>
             
             <!-- Content: show, edit, etc., -->
             <?php tpl_flush() ?>
-
-
             <?php tpl_includeFile('pageheader.html') ?>
             
             <!-- Page Content | Start -->
 
-            <div class="jumbotron" id="maincontent_bg" style="width: 100%; border-radius: 0px;">
+            <div class="jumbotron" id="maincontent_bg" style="border-radius: 0px;">
                 <div class="container">
                     <?php tpl_content($prependTOC = false) ?>
                 </div>
@@ -84,7 +79,7 @@
             
             <?php tpl_includeFile('pagefooter.html') ?>
             
-            <div class="docInfo"><?php tpl_pageinfo() ?></div>
+            <?php tpl_pageinfo() ?>
             <?php tpl_flush() ?>
             
             </div>
@@ -107,14 +102,20 @@
         
     </div>
     
-    <?php include('tpl_footer.html') ?>
+    <?php 
+        include('tpl_footer.php');
+        //include('tpl_footer.html')
+    ?>
     
     <div class="no"><?php tpl_indexerWebBug() ?></div>
     <div id="screen__mode" class="no"></div>
     
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     
 </body>
 
