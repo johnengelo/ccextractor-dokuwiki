@@ -3,7 +3,7 @@
 
 <pre>CCExtractor DokuWiki template based on the design of the static site "ccx-studentspage". Work in progress.</pre>
 <i>This template uses Bootstrap 4.1 as its CSS framework, uses the Ubuntu fonts for the page font.</i>
-This template is dependent on the following DokuWiki plug-ins: <strong>[bootswitch]</strong>
+<p>This template is dependent on the following DokuWiki plug-ins: <strong>[bootswitch]</strong></p>
 <hr>
 
 <i>The current status of the template is not permanent. I'm still doing a lot of changes.</i>
