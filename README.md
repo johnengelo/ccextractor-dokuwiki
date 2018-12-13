@@ -7,11 +7,22 @@
 <hr>
 
 <del><i>The current status of the template is not permanent. I'm still doing a lot of changes.</i></del>
-<h2>CURRENTLY PLANNING A MAJOR OVERHAUL! xD </h2>
 
+<h2>CURRENTLY PLANNING A <strong>MAJOR</strong> OVERHAUL! xD </h2>
+<h4>Planned Features:</h4>
+<pre>
+->  New Color Theme (Dark + Light);
+->  Minimalist Collapsible Sidebar with Bootstrap;
+->  Upgraded Responsive Expanding-at-scroll Navbar;
+->  More Functionalities!
+->  Some Statistical Functions;
+->  Dope design overall xD
 
-<h2> To Do: </h2>
+<h5>Stay tuned for updates!</h5>
 
+<hr>
+<h3> To Do: </h2>
+<i>To be replaced...</i>
 <pre>
 -> Try out a lighter theme
 -> <del>Make the navbar-collapse div work when screen is scaled down</del>
