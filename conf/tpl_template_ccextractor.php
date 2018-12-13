@@ -55,7 +55,7 @@ function tpl_searchform_ccextractor($ajax = true, $autocomplete = true)
  * @return string
  */
 
-function tpl_youarehere_bootstrap($printPrefix = false)
+function tpl_youarehere_ccx($printPrefix = false)
 {
     global $conf;
     global $lang;

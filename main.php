@@ -25,7 +25,7 @@
     <script>(function (H) {
             H.className = H.className.replace(/\bno-js\b/, 'js')
         })(document.documentElement)</script>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="viewport" content="width=device-width"/>
     <meta name="author" content="John Chew">
     <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
     <?php tpl_includeFile('meta.html') ?>
@@ -52,14 +52,12 @@
         
         <?php html_msgarea() ?>
         
-        <div class="row">
+        <div class="main">
             
-            <?php 
-            if ($ACT == 'show' and $showSidebar and page_findnearest($conf['sidebar'])) {
-                echo '<div role="main" class="col-md-9" style="width: 100%;"/>';
-            }
-            else {
-                echo '<div role="main" class="col-md-12" style="width: 100%;"/>';
+            <!-- Breadcrumbs | Custom Breadcrumbs -->
+            <?php
+            if ($conf['youarehere']) {
+                tpl_youarehere_bootstrap();
             }
             ?>
             

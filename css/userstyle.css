@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono');
 @import url("https://use.fontawesome.com/releases/v5.5.0/css/all.css");
 
-
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     font-family: 'Ubuntu', sans-serif;
     background-color: #582841;
@@ -14,16 +9,11 @@ body {
     padding-top: 6rem;
 }
 
-htm;, body {
-    margin: 0;
-    padding: 0;
-}
-
 .navbar {
     background-color: rgba(22,22,22,1);
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: inline-block;
     width: 100%;
 }
 
@@ -34,8 +24,6 @@ htm;, body {
 .navbar-nav {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
-    padding-right: 1em;
 }
 
 .navbar-nav .nav-link {
@@ -69,6 +57,18 @@ htm;, body {
 
 .dropdown-menu {
     background-color: rgba(25,25,25,0.75);
+}
+
+.nav-item .dropdown {
+    display: inline-flex;
+    margin-right: 1em;
+}
+
+.tools_dropdown {
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 div ul form input {
@@ -107,6 +107,10 @@ input::placeholder {
 
 /* -- Main Content -- */
 
+.main {
+    height: auto;
+}
+
 .dokuwiki {
     background-color: rgba(0, 0, 0, 0);
     color: #FF3639;
@@ -124,7 +128,6 @@ input::placeholder {
     width: auto;
     background-color: rgba(0,0,0,0);
     color: #F36F38;
-    padding: 8px;
 }
 
 textarea:focus,
@@ -164,24 +167,9 @@ a:hover {
 
 /* -- Footer -- */
 
-.clearix{
-    zoom:1;
-}
-
-.clearfix:after, .clearfix:before{
-    line-height: 0;
-    content: '';
-    display: table;
-}
-
-.clearfix:after{
-    clear:both;
-}
-
 footer {
-    background-color: rgba(12, 12, 12, 0.85);
+    background-color: rgba(22, 22, 22, 1);
     color: #F36F38;
-    bottom: 0;
     width: 100%;
 }
 
