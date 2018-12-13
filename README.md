@@ -15,7 +15,7 @@
 -> Add breadcrumbs
 -> edit "last modified" content
 -> Edit system buttons and pretty much the system ui
--> Fix Search function
+-> <del>Fix Search function</del>
 -> Fix alignments of admin/user icon and page setting icon to match the navbar links
 -> Add links to footer
 -> Create a template using DokuWiki markup
