@@ -6,7 +6,8 @@
 <p>This template is dependent on the following DokuWiki plug-ins: <strong>[bootswitch]</strong></p>
 <hr>
 
-<i>The current status of the template is not permanent. I'm still doing a lot of changes.</i>
+<del><i>The current status of the template is not permanent. I'm still doing a lot of changes.</i></del>
+<h2>CURRENTLY PLANNING A MAJOR OVERHAUL! xD </h2>
 
 
 <h2> To Do: </h2>
