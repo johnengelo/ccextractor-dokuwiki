@@ -17,7 +17,7 @@
 ->  More Functionalities!
 ->  Some Statistical Functions;
 ->  Dope design overall xD
-
+</pre>
 <h5>Stay tuned for updates!</h5>
 
 <hr>
