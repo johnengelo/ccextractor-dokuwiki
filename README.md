@@ -12,6 +12,7 @@
 <h2> To Do: </h2>
 
 <pre>
+-> Make the navbar-collapse div work when screen is scaled down
 -> Add breadcrumbs
 -> edit "last modified" content
 -> Edit system buttons and pretty much the system ui
