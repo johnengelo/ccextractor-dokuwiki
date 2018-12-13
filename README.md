@@ -12,6 +12,7 @@
 <h2> To Do: </h2>
 
 <pre>
+-> Try out a lighter theme
 -> <del>Make the navbar-collapse div work when screen is scaled down</del>
 -> Add breadcrumbs
 -> edit "last modified" content
