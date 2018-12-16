@@ -1,0 +1,255 @@
+/* -- Variables -- */
+@theme_highlight_color: #F36F38;
+@main_font: 'Roboto', sans-serif;
+@font_family_2: 'Ubuntu', sans-serif;
+@header_color: #141D28;
+@transparent: rgba(0,0,0,0);
+@sidebar_color: #1F2D3A;
+@main_background: #E9ECEF;
+@footer_color: #26354A;
+@null: 0;
+@mainbg: url('../images/pagesBackground.svg');
+
+/* -- Sidebar Gradient Background Variables -- */
+@sidebar_background_old: rgb(76,76,76); /* Old browsers */
+@sidebar_background_ff: -moz-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(43,43,43,1) 100%); /* FF3.6-15 */
+@sidebar_background_chrsf: -webkit-linear-gradient(left, rgba(76,76,76,1) 0%,rgba(43,43,43,1) 100%); /* Chrome10-25,Safari5.1-6 */
+@sidebar_background_lts: linear-gradient(to right, rgba(76,76,76,1) 0%,rgba(43,43,43,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+/* -- Navbar, Sidebar and <Main> Background Variables -- */
+@navnoise: url('../images/navbar-noise.png');
+@sdbnoise: url('../images/sidebar-noise.png');
+@mainnoise: url('../images/mainbg-noise.png');
+@mainpagenoise: url('../images/mainpage-noise.png');
+
+/* -- Navbar & Sidebar Noise Background Mixins -- */
+.nvbrnoisebg {
+	background-color: #242120;
+	background-image: @navnoise;
+}
+
+.sdbnoisebg {
+	background-color: #191716;
+	background-image: @sdbnoise;
+}
+
+/* -- Sidebar Background Mixin -- */
+.sidebar_background {
+	background: @sidebar_background_old;
+	background: @sidebar_background_ff;
+	background: @sidebar_background_chrsf;
+	background: @sidebar_background_lts;
+}
+
+/* -- <main> Background Mixin -- */
+.mainbackgroundpatt {
+	background-color: #151313;
+	background-image: @mainnoise;
+	background-image: @mainbg;
+}
+
+.mainpage-noisebg {
+	background-color: #3B3634;
+	background-image: @mainpagenoise;
+}
+
+/* -- Main Font -- */
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
+
+/*--- Header ---*/
+
+body {
+	font-family: @main_font;
+	.mainbackgroundpatt();
+}
+
+/* -- Navbar -- */
+
+#navbar {
+    .nvbrnoisebg();
+    width: 100%;
+}
+
+nav {
+    a {
+        color: @theme_highlight_color;
+        height: 100%;
+        &:hover {
+            color: @theme_highlight_color;
+        }
+        &:active {
+            color:@theme_highlight_color;
+        }
+    }
+    #navbar_logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    flex: 1;
+    flex-flow: row;
+    justify-content: center;
+}
+
+div ul form input {
+    font-family: Roboto;
+    border-radius: 1.5em 0 0 0;
+    border-color: @theme_highlight_color !important;
+    background-color: @transparent !important;
+    width: auto;
+}
+
+div ul form button {
+    background-color: @theme_highlight_color;
+    color: white;
+}
+
+input::placeholder {
+    color: @theme_highlight_color !important;
+}
+
+.tools_dropdown {
+    display: inline-flex;
+    margin-top: auto;
+    margin-bottom: auto;
+    justify-content: flex-end;
+}
+
+.breadcrumbs {
+    a {
+        color: white;
+    }
+}
+
+/* -- Sidebar -- */
+
+aside {
+	.sdbnoisebg();
+	display: flex;
+	align-items: stretch;
+	display: flex;
+	top: @null;
+	left: @null;
+}
+
+#sidebar {
+	display: flex;
+}
+
+#sidebar-collapse {
+    top: @null;
+	left: @null;
+	position: sticky;
+	position: -webkit-sticky;
+}
+
+.toc {
+    list-style-type: none;
+    a {
+        color: @theme_highlight_color;
+        &:hover {
+            color: white;
+            text-decoration: none;
+        }
+    }
+    h1, h2, h3, h4, h5, h6 strong p {
+        color: @theme_highlight_color;
+    }
+}
+
+#navbar_brand_sidebar {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1.5em;
+}
+
+#sidebar_nav-item {
+	padding-top: 0.25rem;
+	margin-top: 0.75rem;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: @sidebar_color;
+	width: 100%;
+	color: @theme_highlight_color;
+	justify-content: center;
+	font-size: 0.75rem;
+}
+
+/* -- Main Content -- */
+
+#sidebar_button {
+    color: white;
+    background-color: @theme_highlight_color
+}
+
+main {
+	height: auto;
+}
+
+#maincontent_bg {
+	margin-bottom: @null;
+    .mainpage-noisebg();
+    strong {
+        color: @theme_highlight_color;
+    }
+    a {
+        color: @theme_highlight_color;
+    }
+    h1,h2,h3,h4,h5 {
+        color: @theme_highlight_color;
+    }
+    p {
+        color: white;
+    }
+    li, legend{
+        color: @theme_highlight_color;
+    }
+}
+
+.colored-text {
+	color: @theme_highlight_color;
+}
+
+.main-bg {
+	.mainpage-noisebg();
+	width: 100%;
+}
+
+.breadcrumbs {
+	border-radius: 0.25em;
+	padding: 0.5rem;
+}
+
+/*--- Footer ---*/
+
+footer {
+	.nvbrnoisebg();
+	color: @theme_highlight_color;
+	width: 100%;
+	position: -webkit-sticky;
+	position: sticky;
+	ul {
+		li {
+			list-style-type: none;
+		}
+	}
+    a {
+        color: white;
+    }
+}
+
+#footer_tagline {
+	padding-top: 0.25rem;
+}
+
+/*-- Media Queries --*/
+
+@media (max-width: 768px) {
+	aside {
+		display: none;
+	}
+	#sidebar-left {
+		display: none;
+	}
+}

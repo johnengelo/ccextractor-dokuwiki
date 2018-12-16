@@ -22,9 +22,10 @@ function tpl_searchform_ccextractor($ajax = true, $autocomplete = true)
     }
 
     echo '<form id="navbar_search" action="'.wl().'" accept-charset="utf-8" class="p-3 search form-inline" method="get" role="search">';
-    echo '<input type="hidden" style="margin-left: 0px; border-radius: 20px; border-color: #F36F38; width: 100px; background-color: rgba(0,0,0,0); color: #F36F38;" name="do" value="search" />';
+    echo '<input type="hidden" name="do" value="search" />';
     echo '<label class="sr-only" for="search">Search Term</label>';
-    echo '<input class="edit form-control empty" type="text" ';
+    echo '<div class="input-group">';
+    echo '<input class="edit form-control empty" id="search_bar" aria-describedby="search_button_addon" type="text" ';
     if ($ACT == 'search') {
         print 'value="'.htmlspecialchars($QUERY).'" ';
     }
@@ -33,7 +34,9 @@ function tpl_searchform_ccextractor($ajax = true, $autocomplete = true)
         print 'autocomplete="off" ';
     }
     echo 'id="qsearch__in" accesskey="f" name="id" class="edit form-control" title="[F]" />';
-//  print '<button type="submit" title="'.$lang['btn_search'].'">'.$lang['btn_search'].'</button>';
+    echo '<div class="input-group-append">'.'<button class="btn" id="search_button_addon">'.'<i class="fas fa-search"></i>'.'</button>'.'</div>';
+    echo '</div>';
+    //print '<button class="btn" id="search_button" type="submit" title="'.$lang['btn_search'].'">'.'<i class="fas fa-search"></i>'.'</button>';
                 if ($ajax) {
                     print '<div id="qsearch__out" class="ajax_qsearch JSpopup"></div>';
                 }
@@ -43,86 +46,72 @@ function tpl_searchform_ccextractor($ajax = true, $autocomplete = true)
 }
 
 /**
+ *
+ * Forked from DokuWiki inc/template.php
+ *
  * Hierarchical breadcrumbs
  *
- * This will return the Hierarchical breadcrumbs.
+ * This code was suggested as replacement for the usual breadcrumbs.
+ * It only makes sense with a deep site structure.
  *
- * Config:
- *    - $conf['youarehere'] must be true
- *    - add $lang['youarehere'] if $printPrefix is true
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @author Nigel McNie <oracle.shinoda@gmail.com>
+ * @author Sean Coates <sean@caedmon.net>
+ * @author <fredrik@averpil.com>
+ * @todo   May behave strangely in RTL languages
  *
- * @param bool $printPrefix print or not the $lang['youarehere']
- * @return string
+ * @param string $sep Separator between entries
+ * @param bool   $return return or print
+ * @return bool|string
  */
-
-function tpl_youarehere_ccx($printPrefix = false)
-{
+function tpl_youarehere_ccx($sep = null, $return = false) {
     global $conf;
+    global $ID;
     global $lang;
 
     // check if enabled
-    if (!$conf['youarehere']) {
-        return;
-    }
+    if(!$conf['youarehere']) return false;
+
+    //set default
+    if(is_null($sep)) $sep = ' &ensp; <i class="fas fa-chevron-circle-right"></i> &ensp; ';
+
+    $out = '';
+
+    $parts = explode(':', $ID);
+    $count = count($parts);
+
+    $out .= '<span class="bchead">'.'<i class="fas fa-map-marker-alt">'.'</i>'.'&ensp;Current Page: &emsp;'.' </span>';
+
+    // always print the startpage
+    $out .= '<span class="home">' . tpl_pagelink(':'.$conf['start'], null, true) . '</span>';
 
     // print intermediate namespace links
-    $htmlOutput = '<ol class="breadcrumb">'.PHP_EOL;
+    $part = '';
+    for($i = 0; $i < $count - 1; $i++) {
+        $part .= $parts[$i].':';
+        $page = $part;
+        if($page == $conf['start']) continue; // Skip startpage
 
-    // Print the home page
-    $htmlOutput .= '<li>'.PHP_EOL;
-    if ($printPrefix) {
-        $htmlOutput .= $lang['youarehere'].' ';
-    }
-    $page = $conf['start'];
-    $htmlOutput .= tpl_link(wl($page), '<span class="fas fa-home" aria-hidden="true"></span>', 'title="'.tpl_pagetitle($page, true).'"', $return = true);
-    $htmlOutput .= '</li>'.PHP_EOL;
-
-    // Print the parts if there is more than one
-    global $ID;
-    $idParts = explode(':', $ID);
-    if (count($idParts) > 1) {
-
-        // Print the parts without the last one ($count -1)
-        $page = '';
-        for ($i = 0; $i < count($idParts) - 1; ++$i) {
-            $page .= $idParts[$i].':';
-
-            // Skip home page of the namespace
-            // if ($page == $conf['start']) continue;
-
-            // The last part is the active one
-            // if ($i == $count) {
-            //      $htmlOutput .= '<li class="active">';
-            // } else {
-            //      $htmlOutput .= '<li>';
-            // }
-
-            $htmlOutput .= '<li>';
-            // html_wikilink because the page has the form pagename: and not pagename:pagename
-            $htmlOutput .= html_wikilink($page);
-            $htmlOutput .= '</li>'.PHP_EOL;
-        }
+        // output
+        $out .= $sep . tpl_pagelink($page, null, true);
     }
 
-    // Skipping Wiki Global Root Home Page
-    //    resolve_pageid('', $page, $exists);
-    //    if(isset($page) && $page == $idPart.$idParts[$i]) {
-    //        echo '</ol>'.PHP_EOL;
-    //        return true;
-    //    }
-    //    // skipping for namespace index
-    //    $page = $idPart.$idParts[$i];
-    //    if($page == $conf['start']) {
-    //        echo '</ol>'.PHP_EOL;
-    //        return true;
-    //    }
-
-    // print current page
-    //    print '<li>';
-    //    tpl_link(wl($page), tpl_pagetitle($page,true), 'title="' . $page . '"');
-    $htmlOutput .= '</li>'.PHP_EOL;
-    // close the breadcrumb
-    $htmlOutput .= '</ol>'.PHP_EOL;
-
-    return $htmlOutput;
+    // print current page, skipping start page, skipping for namespace index
+    resolve_pageid('', $page, $exists);
+    if (isset($page) && $page == $part.$parts[$i]) {
+        if($return) return $out;
+        print $out;
+        return true;
+    }
+    $page = $part.$parts[$i];
+    if($page == $conf['start']) {
+        if($return) return $out;
+        print $out;
+        return true;
+    }
+    $out .= $sep;
+    $out .= tpl_pagelink($page, null, true);
+    if($return) return $out;
+    print $out;
+    return $out ? true : false;
 }

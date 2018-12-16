@@ -1,38 +1,30 @@
 <?php
-    /**
-    * CCExtractor Template Header
-    * @author John Chew
-    * @license  GPL 2 (http://www.gnu.org/licenses/gpl.html)
-    */
-    
+
+//Must be run within DokuWiki
 if (!defined('DOKU_INC')) {
     die();
 }
+
 ?>
 
-<?php tpl_includeFile('header.html') ?>
-<link href="css/userstyle.css" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<? tpl_includeFile('header.html'); ?>
 
-<?php //echo $lang['skip_to_content']; ?>
-
-<nav id="navbar" class="navbar navbar-expand-lg fixed-top" style="display: inline">
-    <div class="container">
-        <div class="navbar-nav">
-            <li class="navbar-item" id="nav_logo">
-                <?php
-                // Get logo either out of the template images folder or data/media folder
-                $logoSize = array();
-                $logo = tpl_getMediaFile(array(':wiki:logo.png', 'images/ccx_logo&text.png' , 'images/logo.png', 'images/ccextractor_logotype.png' ), false, $logoSize);
-                // Display logo in a link to the home page
-                tpl_link(
-                        wl(),
-                        '<img src="'.$logo.'" '.$logoSize[1].' alt="" />'
-                        );
-                ?>
-            </li>
-        </div>
-
+<nav id="navbar" class="navbar navbar-expand-lg sticky">
+    <div class="navbar-nav" id="navbar_logo">
+        <li class="navbar-item">
+            <?php
+            // Get logo either out of the template images folder or data/media folder
+            $logoSize = array();
+            $logo = tpl_getMediaFile(array(':wiki:logo.png', 'images/ccx_logotext_light.png' , 'images/logo.png', 'images/ccextractor_logotype.png' ), false, $logoSize);
+            // Display logo in a link to the home page
+            tpl_link(
+                    wl(),
+                    '<img src="'.$logo.'" '.$logoSize[1].' alt="" />'
+                    );
+            ?>
+        </li>
+    </div>
+    <div class="container" id="header-container">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_contents" aria-controls="navbar_contents" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars" style="color: #F36F38;"></span>
         </button>
@@ -56,57 +48,46 @@ if (!defined('DOKU_INC')) {
 
             <div>
                 <ul class="nav navbar-nav navbar-dark">
-                    
-                    <!-- Search Form | Custom Function -->
-                    <?php tpl_searchform_ccextractor() ?>
-                    
-                    
+
                     <div class="tools_dropdown">
-                            <?php
-                            if (!empty($_SERVER['REMOTE_USER'])) { ?>
-                                
-                                <li class="nav-item dropdown">
-
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarusertools"
-                                       role="button" aria-haspopup="true" aria-expanded="false"
-                                       title="<?php $lang['loggedinas'] . $_SERVER['REMOTE_USER'] ?>">
-                                        <?php print '<i class="fas fa-user-circle" style="font-size: 2rem;"></i>'/* . ucfirst(editorinfo($_SERVER['REMOTE_USER'], true)); */?>
-                                    </a>
-
-                                    <ul class="dropdown-menu" aria-labelledby="navbarusertools">
-                                        <?php
-                                        echo (new \dokuwiki\Menu\UserMenu())->getListItems('action dropdown-item nav-item ', false);
-                                        ?>
-                                    </ul>
-                                </li>
-
+                        <?php if (!empty($_SERVER['REMOTE_USER'])) { ?>
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarusertools" role="button" aria-haspopup="true" aria-expanded="false">
+                                <?php print '<i class="fas fa-user-circle" style="font-size: 2rem;"></i>'/* . ucfirst(editorinfo($_SERVER['REMOTE_USER'], true)); */?>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarusertools">
+                                <p align="left" style="padding-left: 1.5rem; padding-right: 1.5rem; padding-top: 0.5rem; color: #EF4648;"><?php echo 'Logged in as: ' . '<strong>' . $_SERVER['REMOTE_USER'] . '</strong>' ?></p>
+                                <hr>
                                 <?php
-                                    } else {
-                                    echo (new \dokuwiki\Menu\UserMenu())->getListItems('action nav-link ', false);
-                                    }
+                                    echo (new \dokuwiki\Menu\UserMenu())->getListItems('action dropdown-item nav-item ', false);
                                 ?>
-                        
-                            <?php
-                            
-                            // Page Tools
-                            echo '<li class="nav-item dropdown">';
+                            </ul>
+                        </li>
 
-                            echo '<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarpagetools" role="button" aria-haspopup="true" aria-expanded="false" title="'.$lang['loggedinas'].$_SERVER['REMOTE_USER'].'">';
-                            echo '<span class="dropdown_links"><i class="fas fa-wrench" style="font-size: 1.75rem;"></i></span>';
-                            echo '</a>';
+                        <?php } else { ?>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarlogin" role="button" aria-haspopup="false" aria-expanded="false">
+                                <?php print '<i class="fas fa-sign-in-alt" style="font-size: 2rem;"></i>'/* . ucfirst(editorinfo($_SERVER['REMOTE_USER'], true)); */?>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarlogin">
+                                <?php
+                                    echo (new \dokuwiki\Menu\UserMenu())->getListItems('action dropdown-item nav-link ', false);
+                                ?>
+                            </ul>
+                        <?php } ?>
 
-                            echo '<ul id="pagetools_navbar" class="dropdown-menu"  aria-labelledby="navbarpagetools">';
+                        <!-- Page Tools -->
 
-                            echo(new \dokuwiki\Menu\PageMenu())->getListItems('action dropdown-item nav-item ', false);
+                        <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarpagetools" role="button" aria-haspopup="true" aria-expanded="false" title="<?php echo $lang['loggedinas'].$_SERVER['REMOTE_USER']?>">
+                                <span class="dropdown_links pull-left"><i class="fas fa-sliders-h" style="font-size: 2rem;"></i></span>
+                            </a>
 
-                            // Site Tools
-                            echo(new \dokuwiki\Menu\SiteMenu())->getListItems('action dropdown-item nav-item ', false);
-
-                            echo '</ul>';
-                            echo '</li>';
-
-                            
-                            ?>
+                            <ul id="pagetools_navbar" class="dropdown-menu"  aria-labelledby="navbarpagetools">
+                                <?php echo (new \dokuwiki\Menu\PageMenu())->getListItems('action dropdown-item nav-item ', false); ?>
+                                <!-- Site Tools -->
+                                <?php echo(new \dokuwiki\Menu\SiteMenu())->getListItems('action dropdown-item nav-item ', false); ?>
+                            </ul>
+                        </li>
                     </div>
                 </ul>
             </div>
