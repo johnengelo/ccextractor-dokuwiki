@@ -14,8 +14,9 @@
 ->  New Color Theme (Dark + Light);
 ->  Minimalist Collapsible Sidebar with Bootstrap;
 ->  Upgraded Responsive Expanding-at-scroll Navbar;
+->  Page-specific templates
+->  More Interactivity
 ->  More Functionalities!
-->  Some Statistical Functions;
 ->  Dope design overall xD
 </pre>
 <h5>Stay tuned for updates!</h5>
