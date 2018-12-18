@@ -98,7 +98,7 @@ if (!defined('DOKU_INC')) {
     </div>
 
     <div class="footer-copyright text-center">© 2018 Copyright:
-        &ensp;<?php tpl_link(wl('home'), hsc('<?php echo strip_tags($conf['title']) ?>'), "class="footer-item""'); ?>
+        &ensp;<?php echo strip_tags($conf['title']) ?>
     </div>
 
     <br />

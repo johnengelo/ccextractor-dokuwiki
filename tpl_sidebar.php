@@ -11,36 +11,29 @@ if (!defined('DOKU_INC')) {
 }
 ?>
 
-<aside class="col-12 col-md-2 p-0" id="leftsidebar">
+<aside class="col-md-2 p-0">
     <!-- [ Sidebar ]  -->
-    <nav class="navbar navbar-expand navbar-dark flex-md-column flex-row align-items-start py-2" id="sidebar">
-        <div id="sidebar-collapse">
-            <ul class="flex-md-column flex-row navbar-nav" id="sidebar-content">
-
-                <li class="navbar-item" id="navbar_brand_sidebar">
-                    <?php
-                    // Get logo either out of the template images folder or data/media folder
-                    $logoSize = array();
-                    $logo = tpl_getMediaFile(array(':wiki:logo.png', 'images/logo_large.png', 'images/ccextractor_logotype.png' ), false, $logoSize);
-                    // Display logo in a link to the home page
-                    tpl_link(
-                            wl(),
-                            '<img src="'.$logo.'" alt="logo" />'
-                            );
-                    ?>
-                </li>
-
-                <div class="search">
-                    <!-- Search Form | Custom Function -->
-                    <?php tpl_searchform_ccextractor() ?>
-                </div>
-                <!-- To Do: TOC -->
-                <div class="toc">
-
-                </div>
-                <?php tpl_toc(); ?>
-
-            </ul>
-        </div>
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="sidebar-logo" style="margin-left: auto; margin-right: auto;">
+              <?php
+              $logoSize = array();
+              $logo = tpl_getMediaFile(array(':wiki:logo.png', 'images/logo_large.png', 'images/ccextractor_logotype.png' ), false, $logoSize);
+              tpl_link(
+                      wl(),
+                      '<img src="'.$logo.'" '.$logoSize[1].' alt="" />'
+                      );
+              ?>
+          </li>
+          <li>
+              <?php tpl_searchform_ccextractor() ?>
+          </li>
+          <div class="toc-div">
+              <h5 class="pl-3" id="toc-title">Table of Contents</h5>
+              <nav class="pl-3" id="toc" data-toggle="toc"></nav>
+          </div>
+        </ul>
+      </div>
     </nav>
 </aside>

@@ -7,7 +7,7 @@
 @sidebar_color: #1F2D3A;
 @main_background: #E9ECEF;
 @footer_color: #26354A;
-@null: 0;
+@zero: 0;
 @mainbg: url('../images/pagesBackground.svg');
 
 /* -- Sidebar Gradient Background Variables -- */
@@ -55,6 +55,12 @@
 
 /* -- Main Font -- */
 @import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700";
+@import "http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css";
+
+/* -- Font Awesome Free 5 -- */
+@import "fontawesome/less/fontawesome.less";
+@import "fontawesome/less/brands.less";
+@import "fontawesome/less/solid.less";
 
 /*--- Header ---*/
 
@@ -65,15 +71,13 @@ body {
 
 /* -- Navbar -- */
 
-#navbar {
+#header-nav {
     .nvbrnoisebg();
-    width: 100%;
-}
-
-nav {
+    margin-bottom: 0;
     a {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
         color: @theme_highlight_color;
-        height: 100%;
         &:hover {
             color: @theme_highlight_color;
         }
@@ -82,113 +86,356 @@ nav {
         }
     }
     #navbar_logo {
-        margin-left: auto;
-        margin-right: auto;
+        padding-left: 0.825rem;
     }
-    flex: 1;
-    flex-flow: row;
-    justify-content: center;
 }
 
-div ul form input {
-    font-family: Roboto;
-    border-radius: 1.5em 0 0 0;
-    border-color: @theme_highlight_color !important;
-    background-color: @transparent !important;
-    width: auto;
+.dropdown{
+    a::ms-expand {
+    display: none;
+    }
 }
 
-div ul form button {
-    background-color: @theme_highlight_color;
-    color: white;
+#pagetools_navbar {
+    background: @sdbnoise;
+    li {
+        &:nth-child(1)::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: @theme_highlight_color;
+            content: @fa-var-pencil-alt;
+            padding-right: 0.45rem;
+        }
+        &:nth-child(2)::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: @theme_highlight_color;
+            content: @fa-var-redo-alt;
+            padding-right: 0.45rem;
+        }
+        &:nth-child(3)::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: @theme_highlight_color;
+            content: @fa-var-link;
+            padding-right: 0.45rem;
+        }
+        &:nth-child(4)::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: @theme_highlight_color;
+            content: @fa-var-arrow-circle-up;
+            padding-right: 0.45rem;
+        }
+        &:nth-child(5)::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: @theme_highlight_color;
+            content: @fa-var-calendar-check;
+            padding-right: 0.45rem;
+        }
+        &:nth-child(6)::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: @theme_highlight_color;
+            content: @fa-var-images;
+            padding-right: 0.45rem;
+        }
+        &:nth-child(7)::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: @theme_highlight_color;
+            content: @fa-var-sitemap;
+            padding-right: 0.45rem;
+        }
+        &:hover {
+        background: @sdbnoise;
+        }
+        a {
+            color: white;
+            &:hover {
+                color: white;
+            }
+        }
+    }
 }
 
-input::placeholder {
-    color: @theme_highlight_color !important;
-}
-
-.tools_dropdown {
-    display: inline-flex;
-    margin-top: auto;
-    margin-bottom: auto;
-    justify-content: flex-end;
-}
-
-.breadcrumbs {
-    a {
+.dropdown-menu {
+    background: @sdbnoise;
+    .logged-in-text {
         color: white;
     }
 }
 
+button {
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: .3rem;
+    background: @sdbnoise;
+    color: @theme_highlight_color;
+    &:hover {
+        text-decoration: none;
+    }
+    &:focus {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(243, 111, 56, .6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(243, 111, 56, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(243, 111, 56, .6);
+    }
+}
+
+.dropdown-menu {
+    width: 12rem;
+    left: -60px;
+    right: -40px;
+}
+
 /* -- Sidebar -- */
 
-aside {
-	.sdbnoisebg();
-	display: flex;
-	align-items: stretch;
-	display: flex;
-	top: @null;
-	left: @null;
+.col-md-2 {
+    max-width: 100% !important;
 }
 
-#sidebar {
-	display: flex;
+.sidebar {
+    background: @sdbnoise;
+    position: sticky;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	padding: 48px 0 0;
+	box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+	.nav-link {
+		.feather {
+			margin-right: 4px;
+			color: white;
+		}
+		&:hover {
+			.feather {
+				color: @theme_highlight_color;
+			}
+		}
+	}
+	.nav-link.active {
+		color: @theme_highlight_color;
+		.feather {
+			color: @theme_highlight_color;
+		}
+	}
 }
 
-#sidebar-collapse {
-    top: @null;
-	left: @null;
-	position: sticky;
-	position: -webkit-sticky;
+.sidebar-sticky {
+	position: relative;
+	top: 0;
+	height: calc(100vh - 48px);
+	padding-top: .5rem;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
-.toc {
-    list-style-type: none;
-    a {
-        color: @theme_highlight_color;
-        &:hover {
-            color: white;
-            text-decoration: none;
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+.sidebar {
+	.nav-link {
+		font-weight: 500;
+		color: @theme_highlight_color;
+	}
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: rgba(243, 111, 56, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(243, 111, 56, .6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(243, 111, 56, .6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(243, 111, 56, .6);
+}
+
+/* -- Search Bar (from tpl_template_ccextractor.php) -- */
+
+.search_bar::placeholder {
+    color: @theme_highlight_color;
+}
+
+div .form-control {
+    background-color: @transparent;
+    border-radius: 1.5em;
+    border-color: @theme_highlight_color;
+    &:active {
+        background-color: @transparent;
+        border-radius: 1.5em;
+        border-color: @theme_highlight_color;
+    }
+    &:focus {
+        background-color: @transparent;
+        border-radius: 1.5em;
+        border-color: @theme_highlight_color;
+    }
+}
+
+#search_button_addon {
+    color: @theme_highlight_color;
+    background-color: @transparent;
+    border-radius: 0 1.5em 1.5em 0;
+    border-color: @theme_highlight_color;
+}
+
+/* -- Table of Contents -- */
+
+nav[data-toggle='toc'] {
+	.nav {
+		li {
+			a {
+				display: block;
+                background: @sdbnoise;
+				padding: 0.25rem 1.25em;
+				font-size: 0.8125rem;
+				font-weight: 500;
+				color: @theme_highlight_color;
+				&:hover {
+                    transition: all 0.2s;
+					padding-left: 0.8125rem;
+					color: @theme_highlight_color;
+					text-decoration: none;
+					border-left: 0.0625rem solid @theme_highlight_color;
+				}
+				&:focus {
+					padding-left: 0.8125rem;
+					color: inherit;
+					text-decoration: none;
+					border-left: 0.0625rem solid @theme_highlight_color;
+				}
+			}
+		}
+		.nav {
+			li {
+				a {
+					padding-top: 0.0625rem;
+					padding-bottom: 0.0625rem;
+					padding-left: 1.875rem;
+					font-size: 0.75rem;
+					font-weight: normal;
+					&:hover {
+						padding-left: 1.8125rem;
+					}
+					&:focus {
+						padding-left: 1.8125rem;
+					}
+				}
+				.active {
+					padding-left: 1.75rem;
+					font-weight: 500;
+					&:hover {
+						padding-left: 1.75rem;
+						font-weight: 500;
+					}
+					&:focus {
+						padding-left: 1.75rem;
+                        border-left: 0.0625rem solid @theme_highlight_color;
+                        font-weight: 500;
+					}
+				}
+			}
+		}
+	}
+	.nav-link.active {
+		padding-left: 1.125rem;
+		font-weight: bold;
+		color: @theme_highlight_color;
+		border-left: 0.125rem solid @theme_highlight_color;
+		&:hover {
+			padding-left: 1.125rem;
+			font-weight: bold;
+			color: @theme_highlight_color;
+			border-left: 0.125rem solid @theme_highlight_color;
+		}
+		&:focus {
+			padding-left: 1.125rem;
+			font-weight: bold;
+			color: @theme_highlight_color;
+			border-left: 0.125rem solid @theme_highlight_color;
+		}
+		&+ul {
+			display: block;
+		}
+	}
+	.nav-link {
+		&+ul {
+			display: none;
+			padding-bottom: 0.625rem;
+		}
+	}
+}
+
+nav[data-toggle='toc'] .nav .nav {
+    display: block;
+}
+
+#toc-title {
+    color: @theme_highlight_color;
+    &::before {
+        font-family: "Font Awesome 5 Free";
+        padding-right: 0.45rem;
+        content: @fa-var-file-alt;
+        font-weight: 900;
+    }
+}
+
+#toc {
+    ul {
+        li {
+            a {
+                color: @theme_highlight_color;
+            }
         }
     }
-    h1, h2, h3, h4, h5, h6 strong p {
-        color: @theme_highlight_color;
-    }
 }
 
-#navbar_brand_sidebar {
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 1.5em;
-}
-
-#sidebar_nav-item {
-	padding-top: 0.25rem;
-	margin-top: 0.75rem;
-	align-items: center;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: @sidebar_color;
-	width: 100%;
-	color: @theme_highlight_color;
-	justify-content: center;
-	font-size: 0.75rem;
+.toc-div {
+    margin-top: 2rem;
 }
 
 /* -- Main Content -- */
 
-#sidebar_button {
-    color: white;
-    background-color: @theme_highlight_color
-}
-
-main {
+#main-content {
 	height: auto;
+    a {
+        &::before {
+            font-family: "Font Awesome 5 Free";
+            content: @fa-var-globe-americas !important;
+            padding-right: 0.45rem;
+            font-weight: 900;
+        }
+    }
 }
 
 #maincontent_bg {
-	margin-bottom: @null;
+	margin-bottom: @zero;
     .mainpage-noisebg();
     strong {
         color: @theme_highlight_color;
@@ -219,6 +466,15 @@ main {
 .breadcrumbs {
 	border-radius: 0.25em;
 	padding: 0.5rem;
+    list-style-type: none;
+    a {
+        color: white;
+        text-decoration: none;
+        &:hover {
+            color: @theme_highlight_color;
+            transition: all 0.3s;
+        }
+    }
 }
 
 /*--- Footer ---*/
@@ -236,6 +492,12 @@ footer {
 	}
     a {
         color: white;
+        text-decoration: none;
+        &:hover {
+            text-decoration: none;
+            color: @theme_highlight_color;
+            transition: all 0.3s;
+        }
     }
 }
 
