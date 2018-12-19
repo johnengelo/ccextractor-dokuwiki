@@ -99,7 +99,7 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
                             </div>
                         </div>
 
-                        <div class="container-fluid bg-faded ml-auto main-bg pt-2 pb-1" style="border-radius: 0.25em;">
+                        <div class="container-fluid bg-faded main-bg pt-2 pb-1 mt-2" style="border-radius: 0.25em;">
                             <p class="colored-text" style="margin-top: 0.75rem;"><?php tpl_pageinfo() ?></p>
                         </div>
 

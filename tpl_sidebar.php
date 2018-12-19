@@ -19,7 +19,7 @@ if (!defined('DOKU_INC')) {
           <li class="sidebar-logo" style="margin-left: auto; margin-right: auto;">
               <?php
               $logoSize = array();
-              $logo = tpl_getMediaFile(array(':wiki:logo.png', 'images/logo_large.png', 'images/ccextractor_logotype.png' ), false, $logoSize);
+              $logo = tpl_getMediaFile(array('images/logo_large.png', 'images/ccextractor_logotype.png' ), false, $logoSize);
               tpl_link(
                       wl(),
                       '<img src="'.$logo.'" '.$logoSize[1].' alt="" />'

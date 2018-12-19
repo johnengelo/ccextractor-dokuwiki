@@ -23,7 +23,7 @@ if (!defined('DOKU_INC')) {
                     <?php
                     // Get logo either out of the template images folder or data/media folder
                     $logoSize = array();
-                    $logo = tpl_getMediaFile(array(':wiki:logo.png','images/ccx_logotext_light.png'), false, $logoSize);
+                    $logo = tpl_getMediaFile(array('images/ccx_logotext_light.png'), false, $logoSize);
                     // Display logo in a link to the home page
                     tpl_link(
                             wl(),
@@ -32,9 +32,7 @@ if (!defined('DOKU_INC')) {
                     ?>
                 </h4>
 
-                <?php if ($conf['tagline']): ?>
-                <p class="claim" id="footer_tagline"><?php echo $conf['tagline']; ?></p>
-                <?php endif ?>
+                <p class="claim" id="footer_tagline">A tool that analyzes video files and produces independent subtitle files from the closed captions data. CCExtractor is portable, small, and very fast. It works in Linux, Windows, and OSX. </p>
 
             </div>
 

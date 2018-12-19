@@ -21,7 +21,7 @@ if (!defined('DOKU_INC')) {
                 <?php
                 // Get logo either out of the template images folder or data/media folder
                 $logoSize = array();
-                $logo = tpl_getMediaFile(array(':wiki:logo.png', 'images/ccx_logotext_light.png' , 'images/logo.png', 'images/ccextractor_logotype.png' ), false, $logoSize);
+                $logo = tpl_getMediaFile(array('images/ccx_logotext_light.png' , 'images/logo.png', 'images/ccextractor_logotype.png' ), false, $logoSize);
                 // Display logo in a link to the home page
                 tpl_link(
                         wl(),
@@ -32,7 +32,7 @@ if (!defined('DOKU_INC')) {
         </div>
         <ul class="navbar-nav mr-auto pl-3 mt-2 mt-lg-0">
             <li class="pr-4">
-                <?php tpl_link(wl('home'), hsc('HOME'), 'title="Home" class="sidebar-item"'); ?>
+                <?php tpl_link(wl(), hsc('HOME'), 'title="Home" class="sidebar-item"'); ?>
             </li>
             <li class="pr-4">
                 <?php tpl_link(wl('about'), hsc('ABOUT'), 'title="About" class="sidebar-item"'); ?>
@@ -67,12 +67,12 @@ if (!defined('DOKU_INC')) {
                     </li>
 
                     <?php } else { ?>
-                        <a href="#" class="nav-link dropdown-toggle pr-4" data-toggle="dropdown" id="navbarlogin" role="button" aria-haspopup="false" aria-expanded="false">
+                        <a href="#" class="nav-link dropdown-toggle pr-4" data-toggle="dropdown" id="navbarlogin" role="button" aria-haspopup="true" aria-expanded="false">
                             <?php print '<i class="fas fa-sign-in-alt" style="font-size: 2rem;"></i>'/* . ucfirst(editorinfo($_SERVER['REMOTE_USER'], true)); */?>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarlogin">
                             <?php
-                                echo (new \dokuwiki\Menu\UserMenu())->getListItems('action dropdown-item nav-link ', false);
+                                echo (new \dokuwiki\Menu\UserMenu())->getListItems('action dropdown-item nav-item', false);
                             ?>
                         </ul>
                     <?php } ?>
