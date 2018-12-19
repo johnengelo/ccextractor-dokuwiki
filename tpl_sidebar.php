@@ -16,7 +16,7 @@ if (!defined('DOKU_INC')) {
     <nav class="col-md-2 d-none d-md-block bg-light sidebar">
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
-          <li class="sidebar-logo" style="margin-left: auto; margin-right: auto;">
+          <li class="sidebar-logo pt-2 pb-2" style="margin-left: auto; margin-right: auto;">
               <?php
               $logoSize = array();
               $logo = tpl_getMediaFile(array('images/logo_large.png', 'images/ccextractor_logotype.png' ), false, $logoSize);

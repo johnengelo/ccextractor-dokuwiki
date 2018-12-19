@@ -62,11 +62,22 @@
 @import "fontawesome/less/brands.less";
 @import "fontawesome/less/solid.less";
 
-/*--- Header ---*/
 
 body {
 	font-family: @main_font;
 	.mainbackgroundpatt();
+}
+
+.back-to-top {
+    position: fixed;
+    right: 0;
+    bottom: 8rem;
+    width: 1.67rem;
+    height: 12rem;
+    background-image: url('../images/backtotop.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1024;
 }
 
 /* -- Navbar -- */
@@ -87,12 +98,6 @@ body {
     }
     #navbar_logo {
         padding-left: 0.825rem;
-    }
-}
-
-.dropdown{
-    a::ms-expand {
-    display: none;
     }
 }
 
@@ -149,7 +154,7 @@ body {
             padding-right: 0.45rem;
         }
         &:hover {
-        background: @sdbnoise;
+        background: @footer_color;
         }
         a {
             color: white;
@@ -160,10 +165,114 @@ body {
     }
 }
 
+fieldset {
+    background: @mainbg;
+    background-color: rgba(22,22,22,0.25) !important;
+    border-radius: 1rem;
+    td {
+        label {
+            color: @theme_highlight_color;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            }
+        }
+    .outkey {
+        width: 8rem;
+        border-radius: 0.2rem;
+        background-color: @theme_highlight_color !important;
+        color: white !important;
+        a {
+            font-weight: bold;
+            font-size: 0.85rem;
+            width: 100% !important;
+            color: white !important;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding-left: 1.5rem;
+            align-content: center;
+        }
+    }
+    legend {
+        align-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background: @navnoise;
+        color: @theme_highlight_color !important;
+        border-radius: 0.375rem !important;
+    }
+}
+
+textarea {
+    width: 100%;
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+label span {
+    color: white;
+}
+
+.toolbutton {
+    padding-left: 0.5rem;
+    margin-right: 0.375rem;
+}
+
 .dropdown-menu {
     background: @sdbnoise;
+    li {
+        &:hover {
+            background-color: #3B3634 !important;
+        }
+    }
     .logged-in-text {
         color: white;
+    }
+    .not-logged-in {
+        color: white;
+    }
+}
+
+input[type="text"], input[type="password"] {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+div {
+    a {
+        list-style-type: none;
+        span {
+            svg {
+                display: none;
+            }
+        }
+    }
+}
+
+label[class="block"] {
+    span {
+        color: @theme_highlight_color;
+        font-weight: bolder;
     }
 }
 
@@ -176,8 +285,8 @@ button {
     border: 1px solid transparent;
     cursor: pointer;
     border-radius: .3rem;
-    background: @sdbnoise;
-    color: @theme_highlight_color;
+    background: @theme_highlight_color;
+    color: white;
     &:hover {
         text-decoration: none;
     }
@@ -185,6 +294,21 @@ button {
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(243, 111, 56, .6);
     -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(243, 111, 56, .6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(243, 111, 56, .6);
+    }
+}
+
+.btn_secedit {
+    button{
+        &::before {
+            position: relative;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: white;
+            content: @fa-var-pencil-alt;
+            padding-right: 0.45rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.875rem;
+        }
     }
 }
 
@@ -279,8 +403,11 @@ input[type="color"]:focus,
 
 /* -- Search Bar (from tpl_template_ccextractor.php) -- */
 
-.search_bar::placeholder {
+.search_bar {
+    background-color: rgba(0,0,0,0) !important;
+    &::placeholder {
     color: @theme_highlight_color;
+    }
 }
 
 div .form-control {
@@ -327,7 +454,7 @@ nav[data-toggle='toc'] {
 				}
 				&:focus {
 					padding-left: 0.8125rem;
-					color: inherit;
+					color: @theme_highlight_color;
 					text-decoration: none;
 					border-left: 0.0625rem solid @theme_highlight_color;
 				}
@@ -367,7 +494,7 @@ nav[data-toggle='toc'] {
 	.nav-link.active {
 		padding-left: 1.125rem;
 		font-weight: bold;
-		color: @theme_highlight_color;
+		color: white;
 		border-left: 0.125rem solid @theme_highlight_color;
 		&:hover {
 			padding-left: 1.125rem;
@@ -404,16 +531,6 @@ nav[data-toggle='toc'] .nav .nav {
         padding-right: 0.45rem;
         content: @fa-var-file-alt;
         font-weight: 900;
-    }
-}
-
-#toc {
-    ul {
-        li {
-            a {
-                color: @theme_highlight_color;
-            }
-        }
     }
 }
 

@@ -115,3 +115,37 @@ function tpl_youarehere_ccx($sep = null, $return = false) {
     print $out;
     return $out ? true : false;
 }
+
+/* -- Customized Breadcrumbs -- */
+
+function tpl_breadcrumbs_ccx($sep = null, $return = false) {
+    global $lang;
+    global $conf;
+
+    //check if enabled
+    if(!$conf['breadcrumbs']) return false;
+
+    //set default
+    if(is_null($sep)) $sep = ' &ensp; <i class="fas fa-chevron-circle-right"></i> &ensp; ';
+
+    $out='';
+
+    $crumbs = breadcrumbs(); //setup crumb trace
+
+    $crumbs_sep = ' <span class="bcsep">'.$sep.'</span> ';
+
+    //render crumbs, highlight the last one
+    $out .= '<span class="bchead">'.'<i class="fas fa-cookie-bite">'.'</i>'.'&ensp;Trace: &emsp;'.' </span>';
+    $last = count($crumbs);
+    $i    = 0;
+    foreach($crumbs as $id => $name) {
+        $i++;
+        $out .= $crumbs_sep;
+        if($i == $last) $out .= '<span class="curid">';
+        $out .= '<bdi>' . tpl_link(wl($id), hsc($name), 'class="breadcrumbs" title="'.$id.'"', true) .  '</bdi>';
+        if($i == $last) $out .= '</span>';
+    }
+    if($return) return $out;
+    print $out;
+    return $out ? true : false;
+}

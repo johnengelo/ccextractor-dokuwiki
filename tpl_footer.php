@@ -11,7 +11,7 @@ if (!defined('DOKU_INC')) {
 }
 
 ?>
-<footer id="dokuwiki__footer" class="clearfix" style="padding-bottom: 0rem !important;">
+<footer id="dokuwiki__footer" class="footer" style="padding-bottom: 0rem !important;">
     <br /><br />
     <div class="container text-center text-md-left" id="footer_container">
 

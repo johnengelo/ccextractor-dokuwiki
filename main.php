@@ -38,9 +38,6 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
         <meta name="viewport" content="width=device-width"/>
         <?php echo tpl_favicon(array('favicon', 'mobile')); ?>
 
-        <!-- Favicon [forces an update to show the icon] -->
-        <link rel="shortcut icon" href="images/favicon.ico?v=2" type="image/x-icon">
-
         <?php tpl_includeFile('meta.html') ?>
 
         <?php tpl_metaheaders() ?>
@@ -58,19 +55,18 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
 
     <body role="document" data-spy="scroll" data-target="#toc">
 
-        <?php
-            // Functions Library
-            require_once('conf/tpl_template_ccextractor.php');
-            // Header File
-            include('tpl_header.php');
-        ?>
-
-        <div class="main">
+    <?php
+        // Functions Library
+        require_once('conf/tpl_template_ccextractor.php');
+        // Header File
+        include('tpl_header.php');
+    ?>
+    <div id="dokuwiki__top" class="dokuwiki">
+        <div class="main" id="#dokuwiki__top">
 
             <!-- [ Content: show, edit, etc., ] -->
             <?php tpl_flush() ?>
             <?php tpl_includeFile('pageheader.html') ?>
-
             <!-- [ Page Content | Start ] -->
             <div class="container-fluid">
                 <div class="row">
@@ -81,19 +77,18 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
                         <div class="container-fluid breadcrumbs colored-text main-bg mt-2 mb-2">
                             <div class="container-fluid">
                                 <?php
-                                    tpl_youarehere_ccx();
+                                    tpl_breadcrumbs_ccx();
                                 ?>
                             </div>
                         </div>
 
                         <!-- [ Page Content ] -->
-
                         <div class="jumbotron" id="maincontent_bg" style="border-radius: 0.25em;">
                             <div class="container" id="main-content">
                                 <!-- [ Message Area ] -->
                                 <?php html_msgarea() ?>
-                                <!-- [ Main Page Content - Start ] -->
 
+                                <!-- [ Main Page Content - Start ] -->
                                 <?php tpl_content($prependTOC = false) ?>
                                 <!-- [ Main Content - End] -->
                             </div>
@@ -137,15 +132,19 @@ $showSidebar = $hasSidebar && ($ACT == 'show');
         <?php
             include('tpl_footer.php');
         ?>
+    </div>
+    <a href="#dokuwiki__top" class="back-to-top hidden-print btn btn-default btn-sm pull-right" title="<?php echo $lang['skip_to_content'] ?>" accesskey="t"></a>
 
-        <!-- jQuery 3.3.1 CDN -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <!-- Popper.js 1.14.3 CDN -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <!-- Bootstrap.js 4.1.3 CDN -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <!-- Bootstrap Scrollspy TOC -->
-        <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.0/dist/bootstrap-toc.min.js"></script>
+
+    <!-- jQuery 3.3.1 CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.js 1.14.3 CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <!-- Bootstrap.js 4.1.3 CDN -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Bootstrap Scrollspy TOC -->
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.0/dist/bootstrap-toc.min.js"></script>
+
 </body>
 
 </html>
