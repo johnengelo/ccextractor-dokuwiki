@@ -13,11 +13,12 @@
 <h2>CURRENTLY PLANNING A <strong>MAJOR</strong> OVERHAUL! xD </h2>
 <h4>Planned Features:</h4>
 <pre>
-->  New Color Theme (Dark + Light);
-->  Minimalist Collapsible Sidebar with Bootstrap;
-->  Upgraded Responsive Expanding-at-scroll Navbar;
-->  More Functionalities!
-->  Some Statistical Functions;
+->  <del>New Color Theme (Dark + Light);</del>
+->  <del>Minimalist Collapsible Sidebar with Bootstrap;</del>
+->  <del>More Functionalities!</del>
+->  Functional sidebar
+->  Admin menu overhaul
+->  Multiple "mini" templates for specific pages
 ->  Dope design overall xD
 </pre>
 <h5>Stay tuned for updates!</h5>
