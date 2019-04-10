@@ -4,7 +4,9 @@
 <img src="screenshots/Screenshot_2018-12-20 CCExtractor wiki dokuwiki.png"/>
 
 <h2> UPDATE!!! </h2>
-<i>Work for the template will be continued in a few days. I'm done with school activities and graduation. :'></i>
+<i>Work for the template will be continued in a few days. Finally have time since I'm done with school activities and HS graduation. :'></i>
+
+<hr>
 
 <pre>CCExtractor DokuWiki template based on the design of the static site "ccx-studentspage". Work in progress.</pre>
 <i>This template uses Bootstrap 4.1 as its CSS framework, and the Roboto fonts for the page font.</i>
